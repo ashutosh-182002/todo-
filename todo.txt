@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+</head>
+<body>    
+        <div class="div1">
+            <h1 style="color: white; font-size: 50px; padding-top: 20px; font-weight: bolder;">ToDo List.</h1>
+            <p style="color: white; font-size: 20px; font-weight: bolder;">What do you want to get done today?</p>
+            
+                <form id="start">
+                <input type="text" id="input" class="input"  placeholder="Enter your list........" autocomplete="off">
+                </form>
+            
+           <div class="div2" id="listdiv" class="listItem">
+            <ol id="list">
+               
+            </ol>
+           </div>
+        </div>
+</body>
+</html>
+
+
+.div1{
+    position: absolute;
+    margin-top: 50px;
+    margin-bottom: auto;
+    margin-left: 300px;
+    margin-right: auto;
+    align-items:center; 
+    background-color: rgb(36, 123, 245);
+    height: 600px;
+    width: 500px;
+    text-align:center; 
+}
+.div2{
+    position: relative;
+    background-color:white;
+
+    margin-top: 9px;
+    margin-left: 76px;
+
+    height: 345px;
+    width: 350px;
+}
+
+body{
+    background-color: #82859e;
+}
+
+#input{
+  margin-left: 74px;
+
+}
+.input {
+    border: none;
+    border-radius: 5px;
+    color:black;
+    font-size: 1rem;
+    padding: 1rem;
+    display: block;
+    width: 319px;
+    font-size: larger;
+  }
+  
+  .input::placeholder {
+    color: #00c5e7;
+  }
+  
+  .input:focus {
+    outline-color: #1b5cf5;
+    opacity: 0.9;
+  }
+
+
+  li:hover {
+    background: #f0f1f3;
+  }
+
+  li > button {
+    font-weight: normal;
+    background: none;
+    border: none;
+    float: right;
+    color: black;
+    font-weight: 900;
+    padding-top: 4px;
+    font-size: 17px;
+  }
+  li{
+    font-size: 30px;
+    text-align: left;
+    
+  
+  }
+
+	body{
+	background: #bcde;
+	font-family: arial;
+	font-size: clamp(19px,1.6vw,27px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    min-height: 100vh;}
+
+
+
+	var ol = document.getElementById('list');
+var entery = document.getElementById('start');
+entery.onsubmit = function (evt) {
+  evt.preventDefault();
+  var input = document.getElementById('input').value;
+  if (input === "") {
+    alert('Please enter your task');
+  } else {
+    createListElement();
+  }
+}
+
+function inputLength() {
+  return input.value.length;
+}
+
+function listLength() {
+  return item.length;
+}
+
+function createListElement() {
+  var li = document.createElement("li");
+  
+  li.appendChild(document.createTextNode(input.value));
+  ol.appendChild(li);
+  input.value = "";
+
+  function crossOut() {
+    li.classList.toggle("done");
+  }
+
+  li.addEventListener("click", crossOut);
+  var dBtn = document.createElement("button" + "");
+  dBtn.appendChild(document.createTextNode("X"));
+  li.appendChild(dBtn);
+  dBtn.addEventListener("click", deleteListItem);
+
+  function deleteListItem() {
+    var listItems = document.getElementsByTagName("li"); // or document.querySelectorAll("li"); 
+    for (var i = 0; i < listItems.length; i++) {
+      listItems[i].onclick = function () { this.parentNode.removeChild(this); }
+    }
+
+  }
+}
